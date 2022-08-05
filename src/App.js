@@ -1,40 +1,22 @@
-import React from "react";
-import axios from "axios";
+import React, { Component } from "react";
+import Beers from "./Beers";
+import List from "./List";
+import Beer from "./Beer";
 
 import "./App.css";
 
-import BeerCard from "./BeerCard";
+class App extends Component {
+  
 
-class App extends React.Component {
-  constructor() {
-    super();
 
-    this.state = {
-      arrayOfBeer: [],
-    };
-  }
-
-  componentDidMount() {
-    axios.get("https://api.punkapi.com/v2/beers").then((res) => {
-      const arrayOfBeer = res.data;
-      this.setState({ arrayOfBeer });
-    });
-  }
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <ol>
-            {this.state.arrayOfBeer.map((beer, index) => {
-              return (
-                <BeerCard key={index}>
-                  {beer.name} image_url={beer.image_url}
-                </BeerCard>
-              );
-            })}
-          </ol>
-        </header>
+        <h2>Beers</h2>
+      <Beers />
+      <h2>Other Beers</h2>
+      <List />
       </div>
     );
   }
